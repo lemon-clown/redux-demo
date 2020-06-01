@@ -6,9 +6,9 @@
   "types": "lib/types/index.d.ts",
   "private": true,
   "scripts": {
-    "start": "cross-env PORT=5103 ts-node -r tsconfig-paths/register script/start.ts",
+    "start": "cross-env PORT=5103 node -r ts-node/register -r tsconfig-paths/register script/start.ts",
     "prebuild": "yarn lint:fix",
-    "build": "cross-env ts-node -r tsconfig-paths/register script/build.ts",
+    "build": "cross-env node -r ts-node/register -r tsconfig-paths/register script/build.ts",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
     "sort-imports": "sort-imports . --log-level=verbose"
   },
@@ -37,6 +37,7 @@
     "fs-extra": "^8.1.0",
     "rimraf": "^3.0.2",
     "ts-node": "^8.8.2",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.2"
   },
   "@barusu/tool-sort-imports": {
