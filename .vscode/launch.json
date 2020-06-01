@@ -25,5 +25,14 @@
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart"
     },
+    {
+      "type": "chrome",
+      "port": 9222,
+      "request": "attach",
+      "name": "laputa (attach)",
+      "url": "http://localhost:5103*",
+      "sourceMaps": true,
+      "trace": true,
+    },
   ]
 }

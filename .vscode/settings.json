@@ -1,7 +1,10 @@
 {
   "cSpell.words": [
+    "DEVTOOLS",
     "barusu",
     "downlevel",
-    "immer"
+    "esnext",
+    "immer",
+    "prebuild"
   ]
 }
