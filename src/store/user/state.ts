@@ -3,6 +3,7 @@
  */
 export interface UserState {
   username: string
+  gender: 'male' | 'female'
 }
 
 
@@ -10,5 +11,6 @@ export interface UserState {
  *
  */
 export const initUserState: UserState = {
-  username: 'Alice'
+  username: 'Alice',
+  gender: 'female',
 }

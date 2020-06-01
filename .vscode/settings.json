@@ -5,6 +5,8 @@
     "downlevel",
     "esnext",
     "immer",
-    "prebuild"
+    "middlewares",
+    "prebuild",
+    "typeof"
   ]
 }
