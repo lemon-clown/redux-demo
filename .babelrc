@@ -7,5 +7,23 @@
         "typescript": true
       }
     ]
+  ],
+  "plugins": [
+    [
+      "babel-plugin-named-asset-import",
+      {
+        "loaderMap": {
+          "svg": {
+            "ReactComponent": "@svgr/webpack?-svgo,+titleProp,+ref![path]"
+          }
+        }
+      }
+    ],
+    [
+      "@babel/plugin-transform-typescript",
+      {
+        "allowNamespaces": true
+      }
+    ]
   ]
 }

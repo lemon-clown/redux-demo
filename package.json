@@ -31,6 +31,7 @@
     "redux-undo": "^1.0.1"
   },
   "devDependencies": {
+    "@babel/plugin-transform-typescript": "^7.10.1",
     "@barusu-react/eslint-config": "^0.0.8",
     "@barusu-react/webpack-config": "^0.0.8",
     "@barusu/option-util": "^0.0.12",
