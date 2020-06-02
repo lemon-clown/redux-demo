@@ -1,0 +1,16 @@
+.todo-list
+  width: 20rem
+  .todo-item
+    display: flex
+    .todo-item__content
+      flex: 1
+      display: inline-block
+    .todo-item__remove-btn
+      flex: 0 0 auto
+      display: none
+      cursor: pointer
+      color: #999
+    &:hover
+      .todo-item__remove-btn
+        display: inline-block
+

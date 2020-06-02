@@ -1,24 +1,10 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { StoreState } from '../store/state'
 import {
   FETCH_USER_INFO_REQUESTED,
   FetchUserInfoRequestedAction,
-} from '../store/user/types'
-
-
-export function App(props: AppProps): React.ReactElement {
-  const { username, gender, handleUpdateUser } = props
-  return (
-    <div>
-      Hello, { username }! You are a { gender }
-      <hr />
-      <button onClick={ () => handleUpdateUser(username) }>
-        Update user info
-      </button>
-    </div>
-  )
-}
+} from '@/store/user/types'
+import { connect } from 'react-redux'
+import { StoreState } from '../store/state'
+import App from './component'
 
 
 /**
@@ -59,7 +45,3 @@ export interface AppDispatchProps {
 export interface AppOwnProps {
 
 }
-
-
-export interface AppProps extends
-  AppStateProps, AppDispatchProps, AppOwnProps { }

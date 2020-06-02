@@ -1,17 +1,17 @@
 // Action type for update username
-export const UPDATE_USERNAME = '@user/UPDATE_USERNAME'
+export const UPDATE_USERNAME = Symbol('@user/UPDATE_USERNAME')
 export type UPDATE_USERNAME = typeof UPDATE_USERNAME
 
 // Action type for fetch user-info (requested)
-export const FETCH_USER_INFO_REQUESTED = '@user/FETCH_USER_INFO/REQUESTED'
+export const FETCH_USER_INFO_REQUESTED = Symbol('@user/FETCH_USER_INFO/REQUESTED')
 export type FETCH_USER_INFO_REQUESTED = typeof FETCH_USER_INFO_REQUESTED
 
 // Action type for fetch user-info (succeed)
-export const FETCH_USER_INFO_SUCCEED = '@user/FETCH_USER_INFO/SUCCEED'
+export const FETCH_USER_INFO_SUCCEED = Symbol('@user/FETCH_USER_INFO/SUCCEED')
 export type FETCH_USER_INFO_SUCCEED = typeof FETCH_USER_INFO_SUCCEED
 
 // Action type for fetch user-info (failed)
-export const FETCH_USER_INFO_FAILED = '@user/FETCH_USER_INFO/FAILED'
+export const FETCH_USER_INFO_FAILED = Symbol('@user/FETCH_USER_INFO/FAILED')
 export type FETCH_USER_INFO_FAILED = typeof FETCH_USER_INFO_FAILED
 
 
