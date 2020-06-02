@@ -1,3 +1,4 @@
+import { PersistPartial } from 'redux-persist/es/persistReducer'
 import { StateWithHistory } from 'redux-undo'
 import { TodoState, initTodoState } from './todo/state'
 import { UserState, initUserState } from './user/state'
@@ -7,7 +8,7 @@ import { UserState, initUserState } from './user/state'
  *
  */
 export interface StoreState {
-  user: UserState
+  user: UserState & PersistPartial
   todo: StateWithHistory<TodoState>
 }
 
@@ -16,7 +17,7 @@ export interface StoreState {
  *
  */
 export const initStoreState: StoreState = {
-  user: initUserState,
+  user: initUserState as any,
   todo: {
     past: [],
     present: initTodoState,

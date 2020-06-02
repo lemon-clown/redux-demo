@@ -1,8 +1,9 @@
 import { Middleware, applyMiddleware, compose, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
+import { persistStore } from 'redux-persist'
 import createSagaMiddleware from 'redux-saga'
-import rootReducer from './reducer'
-import rootSaga from './saga'
+import { rootReducer } from './reducer'
+import { rootSaga } from './saga'
 import { StoreState, initStoreState } from './state'
 
 
@@ -51,7 +52,10 @@ export const store = createStore<StoreState, any, {}, never>(
   enhancer,
 )
 
+
+// persistor
+export const persistor = persistStore(store)
+
+
+// start sagas
 sagaMiddleware.run(rootSaga)
-
-
-export default store

@@ -18,6 +18,3 @@ import { watchUserSaga } from './user/sagas'
 export function* rootSaga () {
   yield fork(watchUserSaga)
 }
-
-
-export default rootSaga

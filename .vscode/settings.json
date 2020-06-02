@@ -8,6 +8,7 @@
     "esnext",
     "immer",
     "middlewares",
+    "persistor",
     "prebuild",
     "redoable",
     "typeof",
