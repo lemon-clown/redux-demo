@@ -1,9 +1,6 @@
-import {
-  FETCH_USER_INFO_REQUESTED,
-  FetchUserInfoRequestedAction,
-} from '@/store/user/types'
+import { StoreState } from '@/store/state'
+import { UserActionCreators } from '@/store/user/actions'
 import { connect } from 'react-redux'
-import { StoreState } from '../store/state'
 import App from './component'
 
 
@@ -21,12 +18,9 @@ export default connect<
     gender: state.user.gender,
   }),
   dispatch => ({
-    handleUpdateUser: (username: string) => {
-      dispatch<FetchUserInfoRequestedAction>({
-        type: FETCH_USER_INFO_REQUESTED,
-        payload: { username }
-      })
-    }
+    handleRefreshUserinfo: (username: string) => (
+      dispatch(UserActionCreators.fetchUserInfoRequested({ username }))
+    ),
   }),
 )(App)
 
@@ -38,7 +32,7 @@ export interface AppStateProps {
 
 
 export interface AppDispatchProps {
-  handleUpdateUser: (username: string) => void
+  handleRefreshUserinfo: (username: string) => void
 }
 
 

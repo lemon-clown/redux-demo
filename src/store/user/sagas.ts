@@ -1,38 +1,31 @@
 import { delay, put, takeLatest } from 'redux-saga/effects'
 import {
-  FETCH_USER_INFO_FAILED,
-  FETCH_USER_INFO_REQUESTED,
-  FETCH_USER_INFO_SUCCEED,
-  FetchUserInfoFailedAction,
-  FetchUserInfoRequestedAction,
-  FetchUserInfoSucceedAction,
-} from './types'
+  UserActionCreators,
+  UserActionTypes,
+  UserFetchUserinfoFailedAction,
+  UserFetchUserinfoRequestedAction,
+  UserFetchUserinfoSucceedAction,
+} from './actions'
 
 
 /**
  * fetch user info
  * @param action
  */
-export function* fetchUserInfo(action: FetchUserInfoRequestedAction) {
+export function* fetchUserInfo(action: UserFetchUserinfoRequestedAction) {
   // Analog network delay
   yield delay(Math.ceil(Math.random() * 3000))
 
-  let nextAction: FetchUserInfoSucceedAction | FetchUserInfoFailedAction
+  let nextAction: UserFetchUserinfoSucceedAction | UserFetchUserinfoFailedAction
   if (Math.random() > 0.5) { // succeed
-    nextAction = {
-      type: FETCH_USER_INFO_SUCCEED,
-      payload: {
-        username: 'Bob',
-        gender: 'male',
-      }
-    }
+    nextAction = UserActionCreators.fetchUserInfoSucceed({
+      username: 'Bob',
+      gender: 'male',
+    })
   } else { // failed
-    nextAction = {
-      type: FETCH_USER_INFO_FAILED,
-      payload: {
-        error: 'failed',
-      }
-    }
+    nextAction = UserActionCreators.fetchUserInfoFailed({
+      error: 'failed',
+    })
   }
 
   yield put(nextAction)
@@ -43,5 +36,5 @@ export function* fetchUserInfo(action: FetchUserInfoRequestedAction) {
  * watch user actions
  */
 export function* watchUserSaga() {
-  yield takeLatest(FETCH_USER_INFO_REQUESTED, fetchUserInfo)
+  yield takeLatest(UserActionTypes.FETCH_USERINFO_REQUESTED, fetchUserInfo)
 }

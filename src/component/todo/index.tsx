@@ -1,5 +1,5 @@
 import { StoreState } from '@/store/state'
-import { addTodoItem, delTodoItem } from '@/store/todo/actions'
+import { TodoActionCreators } from '@/store/todo/actions'
 import { TodoItem } from '@/store/todo/state'
 import { connect } from 'react-redux'
 import Todo from './component'
@@ -18,8 +18,8 @@ export default connect<
     items: state.todo.items,
   }),
   dispatch => ({
-    onAddItem: (todoItem: TodoItem) => dispatch(addTodoItem(todoItem)),
-    onDelItem: (todoItem: TodoItem) => dispatch(delTodoItem(todoItem)),
+    onAddItem: (todoItem: TodoItem) => dispatch(TodoActionCreators.addItem(todoItem)),
+    onDelItem: (todoItem: TodoItem) => dispatch(TodoActionCreators.delItem(todoItem)),
   }),
 )(Todo)
 

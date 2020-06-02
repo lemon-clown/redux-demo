@@ -1,21 +1,21 @@
 import { produce } from 'immer'
 import { Reducer } from 'redux'
+import { TodoActionTypes, TodoActions } from './actions'
 import { TodoItem, TodoState, initTodoState } from './state'
-import { ADD_TODO_ITEM, DEL_TODO_ITEM, TodoAction } from './types'
 
 
-export const todoReducer: Reducer<TodoState, TodoAction> = (
+export const todoReducer: Reducer<TodoState, TodoActions> = (
   state: TodoState = initTodoState,
-  action: TodoAction,
+  action: TodoActions,
 ): TodoState => {
   return produce(state, draftState => {
     switch (action.type) {
-      case ADD_TODO_ITEM: {
+      case TodoActionTypes.ADD_ITEM: {
         const item: TodoItem = { ...action.payload }
         draftState.items.push(item)
         break
       }
-      case DEL_TODO_ITEM: {
+      case TodoActionTypes.DEL_ITEM: {
         const { identifier } = action.payload
         const index = state.items.findIndex(item => item.identifier === identifier)
         if (index >= 0) {
