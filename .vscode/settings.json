@@ -9,6 +9,8 @@
     "immer",
     "middlewares",
     "prebuild",
-    "typeof"
+    "redoable",
+    "typeof",
+    "undoable"
   ]
 }

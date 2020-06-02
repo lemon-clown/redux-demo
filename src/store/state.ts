@@ -1,3 +1,4 @@
+import { StateWithHistory } from 'redux-undo'
 import { TodoState, initTodoState } from './todo/state'
 import { UserState, initUserState } from './user/state'
 
@@ -7,7 +8,7 @@ import { UserState, initUserState } from './user/state'
  */
 export interface StoreState {
   user: UserState
-  todo: TodoState
+  todo: StateWithHistory<TodoState>
 }
 
 
@@ -16,5 +17,9 @@ export interface StoreState {
  */
 export const initStoreState: StoreState = {
   user: initUserState,
-  todo: initTodoState,
+  todo: {
+    past: [],
+    present: initTodoState,
+    future: [],
+  },
 }

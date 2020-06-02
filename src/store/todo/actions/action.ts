@@ -16,7 +16,23 @@ export interface TodoDelItemAction {
 }
 
 
+// Action for performing undo on StoreState.todo
+export interface TodoUndoAction {
+  type: TodoActionTypes.UNDO
+  payload: void
+}
+
+
+// Action for performing undo on StoreState.todo
+export interface TodoRedoAction {
+  type: TodoActionTypes.REDO
+  payload: void
+}
+
+
 // Actions for touching store.todo
 export type TodoActions =
   | TodoAddItemAction
   | TodoDelItemAction
+  | TodoUndoAction
+  | TodoRedoAction

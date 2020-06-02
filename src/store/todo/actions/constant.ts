@@ -7,4 +7,10 @@ export enum TodoActionTypes {
 
   // Removing todo item
   DEL_ITEM = '@todo/DEL_ITEM',
+
+  // Performing undo on StoreState.todo
+  UNDO = '@todo/UNDO',
+
+  // Performing redo on StoreState.todo
+  REDO = '@todo/REDO',
 }

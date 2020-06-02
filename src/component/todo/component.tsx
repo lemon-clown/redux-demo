@@ -9,6 +9,14 @@ export interface TodoProps {
    */
   items: TodoItem[]
   /**
+   * Whether a undo operation can be performed
+   */
+  undoable: boolean
+  /**
+   * Whether a redo operation can be performed
+   */
+  redoable: boolean
+  /**
    * Callback when add todo item
    */
   onAddItem?: (item: TodoItem) => void
@@ -16,11 +24,19 @@ export interface TodoProps {
    * Callback when remove todo item
    */
   onDelItem?: (item: TodoItem) => void
+  /**
+   * Perform undo
+   */
+  onUndo?: () => void
+  /**
+   * Perform redo
+   */
+  onRedo?: () => void
 }
 
 
 export default function Todo(props: TodoProps): React.ReactElement {
-  const { items } = props
+  const { items, undoable, redoable } = props
   const [content, setContent] = useState<string>('')
   const isValidTodoItem = useMemo<boolean>((): boolean => {
     if (!/\S/.test(content)) return false
@@ -44,6 +60,19 @@ export default function Todo(props: TodoProps): React.ReactElement {
     }
   }
 
+
+  const handleUndo = () => {
+    if (props.onUndo != null) {
+      props.onUndo()
+    }
+  }
+
+  const handleRedo = () => {
+    if (props.onRedo != null) {
+      props.onRedo()
+    }
+  }
+
   return (
     <div>
       <div>
@@ -52,12 +81,9 @@ export default function Todo(props: TodoProps): React.ReactElement {
           value={ content }
           onChange={ e => setContent(e.target.value) }
         />
-        <button
-          disabled={ !isValidTodoItem }
-          onClick={ handleAddItem }
-        >
-          add
-        </button>
+        <button disabled={ !isValidTodoItem } onClick={ handleAddItem }>add</button>
+        <button disabled={ !undoable } onClick={ handleUndo }>undo</button>
+        <button disabled={ !redoable } onClick={ handleRedo }>redo</button>
       </div>
       <ul className={ ss.todoList }>
         { items.map(item => {

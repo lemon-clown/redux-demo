@@ -1,6 +1,11 @@
 import { createActionCreator } from '@/util/action'
 import { TodoItem } from '../state'
-import { TodoAddItemAction, TodoDelItemAction } from './action'
+import {
+  TodoAddItemAction,
+  TodoDelItemAction,
+  TodoRedoAction,
+  TodoUndoAction,
+} from './action'
 import { TodoActionTypes } from './constant'
 
 
@@ -20,4 +25,10 @@ export const TodoActionCreators = {
 
   // Removing todo item
   delItem: createActionCreator<TodoDelItemAction>(TodoActionTypes.DEL_ITEM),
+
+  // Performing undo on StoreState.todo
+  undo: createActionCreator<TodoUndoAction>(TodoActionTypes.UNDO),
+
+  // Performing redo on StoreState.todo
+  redo: createActionCreator<TodoRedoAction>(TodoActionTypes.REDO),
 }
