@@ -1,11 +1,6 @@
 import { createActionCreator } from '@/util/action'
 import { TodoItem } from '../state'
-import {
-  TodoAddItemAction,
-  TodoDelItemAction,
-  TodoRedoAction,
-  TodoUndoAction,
-} from './action'
+import { TodoActions } from './action'
 import { TodoActionTypes } from './constant'
 
 
@@ -14,7 +9,7 @@ import { TodoActionTypes } from './constant'
  */
 export const TodoActionCreators = {
   // Adding todo item
-  addItem: createActionCreator<TodoAddItemAction, PartialOmit<TodoItem, 'identifier'>>(
+  addItem: createActionCreator<TodoActions.AddItem, PartialOmit<TodoItem, 'identifier'>>(
     TodoActionTypes.ADD_ITEM,
     todoItem => ({
       identifier: todoItem.identifier || todoItem.content,
@@ -24,11 +19,11 @@ export const TodoActionCreators = {
   ),
 
   // Removing todo item
-  delItem: createActionCreator<TodoDelItemAction>(TodoActionTypes.DEL_ITEM),
+  delItem: createActionCreator<TodoActions.DelItem>(TodoActionTypes.DEL_ITEM),
 
   // Performing undo on StoreState.todo
-  undo: createActionCreator<TodoUndoAction>(TodoActionTypes.UNDO),
+  undo: createActionCreator<TodoActions.Undo>(TodoActionTypes.UNDO),
 
   // Performing redo on StoreState.todo
-  redo: createActionCreator<TodoRedoAction>(TodoActionTypes.REDO),
+  redo: createActionCreator<TodoActions.Redo>(TodoActionTypes.REDO),
 }

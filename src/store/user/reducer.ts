@@ -1,12 +1,12 @@
 import { produce } from 'immer'
 import { Reducer } from 'redux'
-import { UserAction, UserActionTypes } from './actions'
+import { UserActionTypes, UserActions } from './actions'
 import { UserState, initUserState } from './state'
 
 
-export const userReducer: Reducer<UserState, UserAction> = (
+export const userReducer: Reducer<UserState, UserActions> = (
   state: UserState = initUserState,
-  action: UserAction,
+  action: UserActions,
 ): UserState => {
   return produce(state, draftState => {
     switch (action.type) {

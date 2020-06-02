@@ -1,10 +1,5 @@
 import { createActionCreator } from '@/util/action'
-import {
-  UserFetchUserinfoFailedAction,
-  UserFetchUserinfoRequestedAction,
-  UserFetchUserinfoSucceedAction,
-  UserUpdateUsernameAction,
-} from './action'
+import { UserActions } from './action'
 import { UserActionTypes } from './constant'
 
 
@@ -13,18 +8,18 @@ import { UserActionTypes } from './constant'
  */
 export const UserActionCreators = {
   // Updating username
-  updateUsername: createActionCreator<UserUpdateUsernameAction>(
+  updateUsername: createActionCreator<UserActions.UpdateUsername>(
     UserActionTypes.UPDATE_USERNAME),
 
   // Fetching user info (requested)
-  fetchUserInfoRequested: createActionCreator<UserFetchUserinfoRequestedAction>(
+  fetchUserInfoRequested: createActionCreator<UserActions.FetchUserinfoRequested>(
     UserActionTypes.FETCH_USERINFO_REQUESTED),
 
   // Fetching user info (succeed)
-  fetchUserInfoSucceed: createActionCreator<UserFetchUserinfoSucceedAction>(
+  fetchUserInfoSucceed: createActionCreator<UserActions.FetchUserinfoSucceed>(
     UserActionTypes.FETCH_USERINFO_SUCCEED),
 
   // Fetching user info (failed)
-  fetchUserInfoFailed: createActionCreator<UserFetchUserinfoFailedAction>(
+  fetchUserInfoFailed: createActionCreator<UserActions.FetchUserinfoFailed>(
     UserActionTypes.FETCH_USERINFO_FAILED),
 }

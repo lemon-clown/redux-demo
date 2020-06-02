@@ -11,8 +11,8 @@ export const rootReducer = combineReducers<StoreState>({
   user: userReducer,
   todo: undoable<TodoState, TodoActions>(todoReducer, {
     limit: 200,
-    undoType: TodoActionTypes.UNDO,
-    redoType: TodoActionTypes.REDO,
+    undoType: TodoActionTypes.UNDO as unknown as string,
+    redoType: TodoActionTypes.REDO as unknown as string,
   }),
 })
 
