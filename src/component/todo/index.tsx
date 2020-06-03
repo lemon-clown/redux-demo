@@ -1,7 +1,7 @@
+import { connect } from 'react-redux'
 import { StoreState } from '@/store/state'
 import { TodoActionCreators } from '@/store/todo/actions'
 import { TodoItem } from '@/store/todo/state'
-import { connect } from 'react-redux'
 import Todo from './component'
 
 

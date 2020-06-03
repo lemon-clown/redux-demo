@@ -1,6 +1,6 @@
+import { connect } from 'react-redux'
 import { StoreState } from '@/store/state'
 import { UserActionCreators } from '@/store/user/actions'
-import { connect } from 'react-redux'
 import App from './component'
 
 
