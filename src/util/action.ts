@@ -29,10 +29,8 @@ export function createActionCreator<T, P, P0>(type: T, payloadWrapper: PayloadWr
     => { type: T, payload: P }
 
 export function createActionCreator<T, P, P0>(type: T, payloadWrapper?: PayloadWrapper<P0, P>) {
-  return (payload: P0) => {
-    if (payloadWrapper != null) {
-      return { type, payload: payloadWrapper(payload) }
-    }
-    return { type, payload: payload as unknown as P }
+  if (payloadWrapper != null) {
+    return (payload: P0) => ({ type, payload: payloadWrapper(payload) })
   }
+  return (payload: P) => ({ type, payload: payload })
 }
