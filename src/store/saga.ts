@@ -15,6 +15,7 @@ import { watchUserSaga } from './user/sagas'
  *
  * @see https://redux-saga.js.org/docs/advanced/RootSaga.html
  */
-export function* rootSaga () {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function* rootSaga() {
   yield fork(watchUserSaga)
 }

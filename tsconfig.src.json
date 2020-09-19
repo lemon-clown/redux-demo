@@ -1,19 +1,20 @@
 {
-  "extends": "./tsconfig.settings",
+  "extends": "./tsconfig.setting",
   "compilerOptions": {
-    "baseUrl": ".",
-    "declarationDir": "lib/types",
     "lib": [
       "esnext",
       "dom",
       "dom.iterable"
     ],
-    "module": "es2015",
+    "module": "esnext",
+    "declaration": true,
+    "declarationDir": "lib/types",
+    "outDir": "lib",
     "rootDir": "src",
-    "target": "es2015",
-    "outDir": "lib"
+    "target": "es5"
   },
   "include": [
-    "src"
+    "src",
+    "types"
   ]
 }

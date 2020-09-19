@@ -16,7 +16,7 @@ export interface StoreState {
 /**
  *
  */
-export const initStoreState: StoreState = {
+export const initialStoreState: StoreState = {
   user: initUserState as any,
   todo: {
     past: [],

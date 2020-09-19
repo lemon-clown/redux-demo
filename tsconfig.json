@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.settings",
+  "extends": "./tsconfig.setting",
   "compilerOptions": {
     "lib": [
       "esnext",
@@ -10,9 +10,10 @@
     "target": "es2015"
   },
   "include": [
-    "demo",
-    "src",
-    "script",
-    "test"
+    "src/",
+    "types",
+    "script/",
+    "__test__/",
+    "package.json"
   ]
 }

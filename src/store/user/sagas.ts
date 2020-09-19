@@ -6,6 +6,7 @@ import { UserActionCreators, UserActionTypes, UserActions } from './actions'
  * fetch user info
  * @param action
  */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function* fetchUserInfo(action: UserActions.FetchUserinfoRequested) {
   // Analog network delay
   yield delay(Math.ceil(Math.random() * 3000))
@@ -29,6 +30,7 @@ export function* fetchUserInfo(action: UserActions.FetchUserinfoRequested) {
 /**
  * watch user actions
  */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function* watchUserSaga() {
   yield takeLatest(UserActionTypes.FETCH_USERINFO_REQUESTED, fetchUserInfo)
 }

@@ -4,7 +4,7 @@ import { persistStore } from 'redux-persist'
 import createSagaMiddleware from 'redux-saga'
 import { rootReducer } from './reducer'
 import { rootSaga } from './saga'
-import { StoreState, initStoreState } from './state'
+import { StoreState, initialStoreState } from './state'
 
 
 const isEnvDevelopment = process.env.NODE_ENV === 'development'
@@ -46,9 +46,9 @@ const enhancer = composeEnhancers(
 )
 
 
-export const store = createStore<StoreState, any, {}, never>(
+export const store = createStore<StoreState, any, any, never>(
   rootReducer,
-  initStoreState,
+  initialStoreState,
   enhancer,
 )
 

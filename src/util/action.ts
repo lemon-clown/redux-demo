@@ -28,6 +28,7 @@ export function createActionCreator<T, P, P0>(type: T, payloadWrapper: PayloadWr
   : (payload: P0)
     => { type: T, payload: P }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createActionCreator<T, P, P0>(type: T, payloadWrapper?: PayloadWrapper<P0, P>) {
   if (payloadWrapper != null) {
     return (payload: P0) => ({ type, payload: payloadWrapper(payload) })
