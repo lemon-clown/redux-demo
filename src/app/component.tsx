@@ -1,5 +1,5 @@
 import React from 'react'
-import Todo from '@/component/todo'
+import Todo from './component/todo'
 
 
 export interface AppProps {
