@@ -1,34 +1,12 @@
-import { connect } from 'react-redux'
-import { StoreState } from '@/store/state'
-import { TodoActionCreators } from '@/store/todo/actions'
+import React, { useMemo, useState } from 'react'
 import { TodoItem } from '@/store/todo/state'
-import Todo from './component'
+import ss from './style.styl'
 
 
-/**
- * connect to redux store
- */
-export default connect<
-  TodoStateProps,
-  TodoDispatchProps,
-  TodoOwnProps,
-  StoreState
->(
-  state => ({
-    items: state.todo.present.items,
-    undoable: state.todo.past.length > 0,
-    redoable: state.todo.future.length > 0,
-  }),
-  dispatch => ({
-    onAddItem: (todoItem: TodoItem) => dispatch(TodoActionCreators.addItem(todoItem)),
-    onDelItem: (todoItem: TodoItem) => dispatch(TodoActionCreators.delItem(todoItem)),
-    onUndo: () => dispatch(TodoActionCreators.undo()),
-    onRedo: () => dispatch(TodoActionCreators.redo()),
-  }),
-)(Todo)
-
-
-export interface TodoStateProps {
+export interface TodoProps {
+  /**
+   * Items of todo list
+   */
   items: TodoItem[]
   /**
    * Whether a undo operation can be performed
@@ -38,10 +16,6 @@ export interface TodoStateProps {
    * Whether a redo operation can be performed
    */
   redoable: boolean
-}
-
-
-export interface TodoDispatchProps {
   /**
    * Callback when add todo item
    */
@@ -61,6 +35,73 @@ export interface TodoDispatchProps {
 }
 
 
-export interface TodoOwnProps {
+export default function Todo(props: TodoProps): React.ReactElement {
+  const { items, undoable, redoable } = props
+  const [content, setContent] = useState<string>('')
+  const isValidTodoItem = useMemo<boolean>((): boolean => {
+    if (!/\S/.test(content)) return false
+    return items.find(x => x.identifier === content) == null
+  }, [content, items])
 
+  const handleAddItem = () => {
+    if (props.onAddItem != null) {
+      props.onAddItem({
+        identifier: content,
+        content: content,
+        status: 'doing'
+      })
+      setContent('')
+    }
+  }
+
+  const handleDelItem = (item: TodoItem) => {
+    if (props.onDelItem != null) {
+      props.onDelItem(item)
+    }
+  }
+
+
+  const handleUndo = () => {
+    if (props.onUndo != null) {
+      props.onUndo()
+    }
+  }
+
+  const handleRedo = () => {
+    if (props.onRedo != null) {
+      props.onRedo()
+    }
+  }
+
+  return (
+    <div>
+      <div>
+        <input
+          type="text"
+          value={ content }
+          onChange={ e => setContent(e.target.value) }
+        />
+        <button disabled={ !isValidTodoItem } onClick={ handleAddItem }>add</button>
+        <button disabled={ !undoable } onClick={ handleUndo }>undo</button>
+        <button disabled={ !redoable } onClick={ handleRedo }>redo</button>
+      </div>
+      <ul className={ ss.todoList }>
+        { items.map(item => {
+          return (
+            <li key={ item.identifier } >
+              <div className={ ss.todoItem }>
+                <span className={ ss.todoItemContent }>{ item.content }</span>
+                <span
+                  className={ ss.todoItemRemoveBtn }
+                  onClick={ () => handleDelItem(item) }
+                >
+                  &times;
+                </span>
+              </div>
+            </li>
+          )
+        }) }
+      </ul>
+    </div>
+  )
 }

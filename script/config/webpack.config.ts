@@ -471,22 +471,13 @@ export default function createWebpackConfig(
             // Opt-in support for Stylus (using .styl extensions).
             {
               test: /\.styl$/,
-              exclude: /\.module\.styl$/,
               include: [paths.source.src],
-              use: getStyleLoaders(false, { importLoaders: 3 }, 'stylus-loader'),
+              use: getStyleLoaders(true, { importLoaders: 3 }, 'stylus-loader'),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.
               // See https://github.com/webpack/webpack/issues/6571
               sideEffects: true,
-            },
-
-            // Adds support for CSS Modules, but using Stylus
-            // using the extension .module.styl
-            {
-              test: /\.module\.styl$/,
-              include: [paths.source.src],
-              use: getStyleLoaders(true, { importLoaders: 3 }, 'stylus-loader'),
             },
 
             // Inject css with `link` tag, instead of `style` tag

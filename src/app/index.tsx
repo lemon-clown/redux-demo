@@ -1,41 +1,16 @@
-import { connect } from 'react-redux'
-import { StoreState } from '@/store/state'
-import { UserActionCreators } from '@/store/user/actions'
-import App from './component'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import TodoPage from './page/todo'
+import style from './style.styl'
 
 
-/**
- * connect to redux store
- */
-export default connect<
-  AppStateProps,
-  AppDispatchProps,
-  AppOwnProps,
-  StoreState
->(
-  state => ({
-    username: state.user.username,
-    gender: state.user.gender,
-  }),
-  dispatch => ({
-    handleRefreshUserinfo: (username: string) => (
-      dispatch(UserActionCreators.fetchUserInfoRequested({ username }))
-    ),
-  }),
-)(App)
-
-
-export interface AppStateProps {
-  username: string
-  gender: string
-}
-
-
-export interface AppDispatchProps {
-  handleRefreshUserinfo: (username: string) => void
-}
-
-
-export interface AppOwnProps {
-
+export default function App(): React.ReactElement {
+  return (
+    <div className={ style.app }>
+      <Switch>
+        <Route path="/todo" exact><TodoPage /></Route>
+        <Route>404 -- not found</Route>
+      </Switch>
+    </div>
+  )
 }
