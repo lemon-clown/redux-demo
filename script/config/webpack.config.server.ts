@@ -115,7 +115,7 @@ export default function createBaseWebpackServerConfig(
       // Paths with dots should still use the history fallback.
       // See https://github.com/facebook/create-react-app/issues/387.
       disableDotRule: true,
-      index: paths.target.mainPage,
+      index: env.publicUrlOrPath,
     },
 
     public: allowedHost,
