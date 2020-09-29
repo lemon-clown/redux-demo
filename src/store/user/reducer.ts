@@ -1,7 +1,18 @@
+import { createAsyncActionReducer } from '@barusu/redux-actions'
 import { produce } from 'immer'
 import { Reducer } from 'redux'
 import { UserActionTypes, UserActions } from './actions'
+import { UserUpdateLocationActions } from './actions/_update-location'
 import { UserState, initUserState } from './state'
+
+
+// Action handler
+export const handleUpdateLocation
+  = createAsyncActionReducer<
+    UserState['location'],
+    UserActionTypes.UPDATE_LOCATION,
+    UserUpdateLocationActions>(
+      UserActionTypes.UPDATE_LOCATION)
 
 
 export const userReducer: Reducer<UserState, UserActions> = (
@@ -16,12 +27,9 @@ export const userReducer: Reducer<UserState, UserActions> = (
         draftState.username = username
         break
       }
-      case UserActionTypes.FETCH_USERINFO_SUCCEED: {
-        const { username, gender } = action.payload
+      case UserActionTypes.UPDATE_LOCATION: {
         // eslint-disable-next-line no-param-reassign
-        draftState.username = username
-        // eslint-disable-next-line no-param-reassign
-        draftState.gender = gender
+        draftState.location = handleUpdateLocation.process(draftState.location, action)
         break
       }
     }

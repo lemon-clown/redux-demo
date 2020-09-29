@@ -8,17 +8,43 @@ import { UserState } from '@/store/user/state'
 
 export default function TodoPage(): React.ReactElement {
   const dispatch = useDispatch()
-  const { username, gender } = useSelector<StoreState, UserState>(state => state.user)
-  const handleRefreshUserinfo = () => {
-    dispatch(UserActionCreators.fetchUserInfoRequested({ username }))
+  const { username, gender, location } = useSelector<StoreState, UserState>(state => state.user)
+  const handleRefreshUserLocation = () => {
+    dispatch(UserActionCreators.updateLocation.request({ username }))
   }
 
   return (
     <div>
-      Hello, { username }! You are a { gender }
+      Hello, { username }! You are a { gender }.
+      <div style={ { minHeight: '4rem' } }>
+        location: {
+          location.loading
+            ? (
+              <div>
+                <span>loading...</span>
+              </div>
+            )
+            : (
+              location.error == null
+                ? (
+                  location.data != null
+                    ? (
+                      <div>
+                        <p>latitude: { location.data.latitude.toFixed(2) }</p>
+                        <p>longitude: { location.data.longitude.toFixed(2) }</p>
+                      </div>
+                    )
+                    : null
+                )
+                : (
+                  <p>Something is wrong: { location.error.message }!</p>
+                )
+            )
+        }
+      </div>
       <hr />
-      <button onClick={ () => handleRefreshUserinfo() }>
-        Refresh user info
+      <button onClick={ () => handleRefreshUserLocation() }>
+        Refresh user location
       </button>
       <div style={ { marginBottom: '5rem' } }></div>
       <Todo />
