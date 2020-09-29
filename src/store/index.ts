@@ -36,6 +36,20 @@ const middlewares: Middleware[] = [
     collapsed: true,
     duration: true,
     timestamp: true,
+    titleFormatter(formattedAction, formattedTime, took) {
+      const parts = ['\x1b[90maction']
+
+      // append status of AsyncActions into action title
+      let type = String(formattedAction.type)
+      if (typeof formattedAction.status === 'string') {
+        type += ' -- ' + String(formattedAction.status)
+      }
+
+      parts.push(`\x1b[30m${ type }`)
+      parts.push(`\x1b[90m@ ${ formattedTime }`)
+      parts.push(`\x1b[90m(in ${ took.toFixed(2) } ms)`)
+      return parts.join(' ')
+    }
   }),
   sagaMiddleware,
 ].filter((x): x is Middleware => Boolean(x))
